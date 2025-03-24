@@ -3,10 +3,11 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Cookie from "js-cookie";
 import Swal from "sweetalert2";
+import apiInstance from "./axios";
 
 export const login = async(email, password) => {
     try {
-        const { data, status } = await axios.post(`user/token/`, {
+        const { data, status } = await apiInstance.post(`user/token/`, {
             email,
             password,
         })
@@ -31,7 +32,7 @@ export const login = async(email, password) => {
 
 export const register = async(full_name, email, password, password2) => {
     try {
-        const { data } = await axios.post(
+        const { data } = await apiInstance.post(
             'user/register/',
             {
                 full_name,
