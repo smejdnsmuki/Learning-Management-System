@@ -138,6 +138,15 @@ MEDIA_ROOTS = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'userauths.User'
 
+# Email sending package
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp-relay.brevo.com"  # Brevo SMTP server
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '88cf95001@smtp-brevo.com'  # Set this in .env  env("BREVO_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = 'UwI1PXL7K4EvtW9D'  # Set this in .env   env("BREVO_EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = 'silc.urban10@gmail.com'
+
 # MAILGUN_API_KEY = env("MAILGUN_API_KEY")
 # MAILERSEND_API_TOKEN = env("MAILERSEND_API_TOKEN")
 # MAILGUN_SENDER_DOMAIN = env("MAILGUN_SENDER_DOMAIN")

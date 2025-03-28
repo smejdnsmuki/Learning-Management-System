@@ -52,20 +52,26 @@ class PasswordResetEmailVerifyAPIView(generics.RetrieveAPIView):
                 "username": user.username
             }
 
-            subject = "Password Rest Email"
+            subject = "Password Reset Email"
             text_body = render_to_string("email/password_reset.txt", context)
             html_body = render_to_string("email/password_reset.html", context)
 
+            # msg = EmailMultiAlternatives(
+            #     subject=subject,
+            #     from_email=settings.FROM_EMAIL,
+            #     to=[user.email],
+            #     body=text_body
+            # )
             msg = EmailMultiAlternatives(
-                subject=subject,
-                from_email=settings.FROM_EMAIL,
+                subject="Password Reset Email",
+                from_email=settings.DEFAULT_FROM_EMAIL,  # Uses Brevo email
                 to=[user.email],
                 body=text_body
             )
 
             msg.attach_alternative(html_body, "text/html")
             msg.send()
-
+            
             print("link ======", link)
         return user
 
