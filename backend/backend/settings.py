@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zq_^azr&3qb@^9re6hh1prp#mgu#wnvz43^($*v+x3m@lzwfbi'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -143,9 +143,9 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp-relay.brevo.com"  # Brevo SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = '88cf95001@smtp-brevo.com'  # Set this in .env  env("BREVO_EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = 'UwI1PXL7K4EvtW9D'  # Set this in .env   env("BREVO_EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = 'silc.urban10@gmail.com'
+EMAIL_HOST_USER = env('BREVO_EMAIL_HOST_USER')  # Set this in .env  env("BREVO_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env('BREVO_EMAIL_HOST_PASSWORD')  # Set this in .env   env("BREVO_EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 # MAILGUN_API_KEY = env("MAILGUN_API_KEY")
 # MAILERSEND_API_TOKEN = env("MAILERSEND_API_TOKEN")
