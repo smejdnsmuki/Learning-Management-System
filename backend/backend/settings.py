@@ -1,13 +1,29 @@
-from pathlib import Path
-from environ import Env
-import os
-from datetime import timedelta
+# from pathlib import Path
+# from environ import Env
+# import os
+# from datetime import timedelta
 
-env = Env()
-env.read_env()
+# env = Env()
+# env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+import environ
+import os
+from pathlib import Path
+from datetime import timedelta
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+env_path = os.path.join(BASE_DIR, ".env")
+
+if os.path.exists(env_path):
+    env.read_env(env_path)
+else:
+    raise Exception(f"Missing .env file at {env_path}")
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -146,19 +162,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('BREVO_EMAIL_HOST_USER')  # Set this in .env  env("BREVO_EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env('BREVO_EMAIL_HOST_PASSWORD')  # Set this in .env   env("BREVO_EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-
-# MAILGUN_API_KEY = env("MAILGUN_API_KEY")
-# MAILERSEND_API_TOKEN = env("MAILERSEND_API_TOKEN")
-# MAILGUN_SENDER_DOMAIN = env("MAILGUN_SENDER_DOMAIN")
-
-
-# ANYMAIL = {
-#     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-#     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN"),
-# }
-
-# FROM_EMAIL = env("FROM_EMAIL")
-# EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

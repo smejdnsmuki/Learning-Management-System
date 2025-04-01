@@ -164,6 +164,50 @@ class CartOrderSerializer(serializers.ModelSerializer):
     #     else:
     #         self.Meta.depth = 3
 
+    # We could make create() funciton even here instead of in api view:
+    # class CartOrderSerializer(serializers.ModelSerializer):
+    # order_items = CartOrderItemSerializer(many=True)
+    
+    # class Meta:
+    #     model = api_models.CartOrder
+    #     fields = '__all__'
+
+    # def create(self, validated_data):
+    #     # Extract order items from the validated data
+    #     order_items_data = validated_data.pop('order_items')
+
+    #     # Create CartOrder instance first
+    #     order = api_models.CartOrder.objects.create(**validated_data)
+
+    #     # Initialize totals
+    #     total_price = Decimal(0.00)
+    #     total_tax = Decimal(0.00)
+    #     total_initial_total = Decimal(0.00)
+    #     total_total = Decimal(0.00)
+
+    #     # Create CartOrderItems and calculate the totals
+    #     for item_data in order_items_data:
+    #         cart_item = api_models.CartOrderItem.objects.create(order=order, **item_data)
+
+    #         total_price += cart_item.price
+    #         total_tax += cart_item.tax_fee
+    #         total_initial_total += cart_item.initial_total
+    #         total_total += cart_item.total
+
+    #         # Add teacher to the order
+    #         order.teachers.add(cart_item.teacher)
+
+    #     # Update totals for the order
+    #     order.sub_total = total_price
+    #     order.tax_fee = total_tax
+    #     order.initial_total = total_initial_total
+    #     order.total = total_total
+
+    #     # Save the order with the calculated totals
+    #     order.save()
+
+    #     return order
+
 class CertificateSerializer(serializers.ModelSerializer):
 
     class Meta:
